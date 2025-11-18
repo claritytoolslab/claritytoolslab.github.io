@@ -11,6 +11,26 @@
 
   gtag('config', 'G-MT48H98V3W');
 </script>
+<script>
+  // Log when Snap2Plan button is rendered
+  gtag('event', 'ul_button_rendered');
+
+  // For universal links with data parameter
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('data')) {
+    gtag('event', 'ul_open_attempt');
+  }
+
+  // Log success when page loads properly (indicating universal link hit)
+  gtag('event', 'ul_open_success');
+
+  // Detect iOS App Store redirect case (user doesn't have the app)
+  if (navigator.userAgent.includes('iPhone')) {
+      // We can't detect the fallback directly,
+      // but we can timestamp the open attempt
+      gtag('event', 'ul_ios_device');
+  }
+</script>
     <meta http-equiv="refresh" content="0; url=https://apps.apple.com/us/app/snap2plan/id6754525197">
     <title>Snap2Plan</title>
     <style>
